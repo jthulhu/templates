@@ -1,0 +1,8 @@
+[package]
+name = "rust-prologin"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "rust-prologin"
+path = "main.rs"
