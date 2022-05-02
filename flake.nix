@@ -10,6 +10,10 @@
         path = ./rust-prologin;
         description = "Rust template for prologin problem submission.";
       };
+      c = {
+        path = ./c;
+        description = "C template.";
+      };
     };
   };
 }
