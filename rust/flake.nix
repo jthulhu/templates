@@ -1,7 +1,14 @@
 {
   description = "NAME";
   inputs = {
-    cargo2nix.url = github:cargo2nix/cargo2nix/master;
+    cargo2nix = {
+      url = github:cargo2nix/cargo2nix/master;
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
     nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     utils.url = github:numtide/flake-utils;
     rust-overlay = {
