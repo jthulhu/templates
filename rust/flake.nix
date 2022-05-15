@@ -13,7 +13,7 @@
     naersk.url = github:nix-community/naersk;
   };
 
-  outputs = { self, nixpkgs, utils, naerks, rust-overlay }:
+  outputs = { self, nixpkgs, utils, naersk, rust-overlay }:
     utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -25,7 +25,7 @@
         rust = pkgs.rust-bin.stable.latest.default.override {
           extensions = [ "rust-src" "clippy" ];
         };
-        naerskLib = naerks.lib.${system}.override {
+        naerskLib = naersk.lib.${system}.override {
           cargo = rust;
           rustc = rust;
         };
