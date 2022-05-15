@@ -26,7 +26,7 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
-            (import "${cargo2nix}/overlay")
+            cargo2nix.overlay
             rust-overlay.overlay
           ];
         };
