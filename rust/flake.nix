@@ -1,14 +1,6 @@
 {
   description = "NAME";
   inputs = {
-    cargo2nix = {
-      url = github:cargo2nix/cargo2nix/master;
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "utils";
-        rust-overlay.follows = "rust-overlay";
-      };
-    };
     nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     utils.url = github:numtide/flake-utils;
     rust-overlay = {
@@ -18,36 +10,41 @@
         flake-utils.follows = "utils";
       };
     };
+    naersk.url = github:nix-community/naersk;
   };
 
-  outputs = { self, cargo2nix, nixpkgs, utils, rust-overlay }:
+  outputs = { self, nixpkgs, utils, naerks, rust-overlay }:
     utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
-            cargo2nix.overlay
             rust-overlay.overlay
           ];
         };
-        rustPkgs = pkgs.rustBuilder.makePackageSet' {
-          rustChannel = "1.60.0";
-          packageFun = import ./Cargo.nix;
+        rust = pkgs.rust-bin.stable.latest.default.override {
+          extensions = [ "rust-src" "clippy" ];
         };
-      in rec {
-        defaultPackage = (rustPkgs.workspace.NAME {}).bin;
+        naerskLib = naerks.lib.${system}.override {
+          cargo = rust;
+          rustc = rust;
+        };
+      in {
+        defaultPackage = naerskLib.buildPackage {
+          pname = "NAME";
+          root = ./.;
+        };
         defaultApp = utils.lib.mkApp {
           drv = self.defaultPackage.${system};
         };
         devShell = with pkgs; mkShell {
           packages = [
-            cargo
             rustc
+            cargo
             rustfmt
-            pre-commit
             rustPackages.clippy
+            rust-analyzer
           ];
-          RUST_SRC_PATH = rustPlatform.rustLibSrc;
         };
       });
 }
