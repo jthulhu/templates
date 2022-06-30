@@ -19,7 +19,7 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
-            rust-overlay.overlay
+            rust-overlay.overlays.default
           ];
         };
         rust = pkgs.rust-bin.stable.latest.default.override {
