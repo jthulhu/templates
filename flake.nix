@@ -14,6 +14,10 @@
         path = ./c;
         description = "C template.";
       };
+      python = {
+        path = ./python;
+        description = "Python template.";
+      };
     };
   };
 }
