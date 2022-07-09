@@ -12,6 +12,12 @@
           # Python packages
         ];
         pythonWithPkgs = pkgs.python3.withPackages pypkgs;
+        !NAME! = pkgs.python3Packages.buildPythonApplication {
+          pname = "!NAME!";
+          version = "0.1.0";
+          src = ./.;
+          propagatedBuildInputs = pypkgs pkgs.python3Packages;
+        };
       in {
         devShell = with pkgs; mkShell {
           buildInputs = [
@@ -19,5 +25,9 @@
             python3Packages.ptpython
           ];
         };
-      });            
+        defaultPackage = !NAME!;
+        defaultApp = utils.lib.mkApp {
+          drv = !NAME!;
+        }
+      });
 }
