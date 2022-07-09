@@ -18,6 +18,10 @@
         path = ./python;
         description = "Python template.";
       };
+      bash = {
+        path = ./bash;
+        description = "Bash template.";
+      };
     };
   };
 }
