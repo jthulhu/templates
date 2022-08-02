@@ -1,2 +1,2 @@
 build: src/main.c
-	gcc -g -o main -c src/main.c
+	gcc -g -o !NAME! -c src/main.c
