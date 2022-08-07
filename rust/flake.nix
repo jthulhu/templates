@@ -41,6 +41,7 @@
           packages = [
             rustc
             cargo
+            cargo-edit
             rustfmt
             rustPackages.clippy
             rust-analyzer
