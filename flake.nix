@@ -4,23 +4,27 @@
     templates = {
       rust = {
         path = ./rust;
-        description = "Rust template, with Naersk and rust-overlay.";
+        description = "[dev+pkg] Rust template, with Naersk and rust-overlay.";
       };
       rust-prologin = {
         path = ./rust-prologin;
-        description = "Rust template for prologin problem submission.";
+        description = "[dev] Rust template for prologin problem submission.";
       };
       c = {
         path = ./c;
-        description = "C template.";
+        description = "[dev] C template.";
       };
       python = {
         path = ./python;
-        description = "Python template.";
+        description = "[dev+pkg] Python template.";
       };
       bash = {
         path = ./bash;
-        description = "Bash template.";
+        description = "[dev]Bash template.";
+      };
+      ocaml = {
+        path = ./ocaml;
+        description = "[dev] OCaml template.";
       };
     };
   };
