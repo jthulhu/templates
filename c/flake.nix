@@ -13,7 +13,10 @@
         devShell = with pkgs; mkShell {
           packages = [
             clang-tools
+            gcc
+            gdb
             gnumake
+            valgrind
           ];
         };
       });
