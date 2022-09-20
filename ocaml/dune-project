@@ -1,0 +1,9 @@
+(lang dune 3.4)
+
+(name !NAME!)
+
+(generate_opam_files false)
+
+(package
+ (name !NAME!)
+ (depends ocaml dune))

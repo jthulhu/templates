@@ -11,15 +11,15 @@
       let
         pkgs = import nixpkgs { inherit system; };
       in {
-        devShell = with pkgs; mkShell {
-          buildInputs = [
+        devShell = with pkgs.mkShell; {
+          buildInputs = with pkgs; [
             ocaml
-            core
-            core_extended
+            dune_3
+          ] ++ (with ocamlPackages; [
             findlib
             merlin
             utop
-          ];
+          ]);
         };
     });
 }
