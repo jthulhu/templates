@@ -1,5 +1,44 @@
-build: main.o
-	gcc -o !NAME! main.o
+CC = gcc
+CFLAGS = -pedantic -Wall -Wextra -c -std=c11
+LDFLAGS =
 
-main.o: src/main.c
-	gcc -pedantic -Wall -Wextra -g -o main.o -c src/main.c
+ifdef DEBUG
+    CFLAGS += -Og -g
+else
+    CFLAGS += -O2
+endif
+
+NODEPS = clean fclean
+SUFFIXES = .d
+
+SOURCES = $(wildcard src/*.c)
+DEPFILES = $(patsubst src/%.c,deps/%.d,$(SOURCES))
+
+ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
+    -include $(DEPFILES)
+    -include $(TESTDEPFILES)
+endif
+
+build: out/!NAME!
+run: out/!NAME!
+	$^
+
+clean:
+	$(RM) build/*
+
+fclean: clean
+	$(RM) out/*
+	$(RM) shared/*
+
+deps/%.d: src/%.c
+	$(CC) -MT$(patsubst deps/%.d,build/%.o,$@) -MM $^ -o $@
+
+out/%: build/%.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+out/!NAME!: build/main.o
+
+build/%.o: src/%.o
+	$(CC) -o $@ $(CFLAGS) $^
+
+.PHONT: clean fclean build run
