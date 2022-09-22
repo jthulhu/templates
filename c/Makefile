@@ -27,7 +27,7 @@ build: out/!NAME!
 run: out/!NAME!
 	$^
 install: out/!NAME!
-	install -D -m755 $< $(target)/!NAME!
+	install -D -m755 $< $(TARGET)/!NAME!
 
 clean:
 	@$(RM) build/*
