@@ -2,6 +2,9 @@ CC = gcc
 CFLAGS = -pedantic -Wall -Wextra -c -std=c11
 LDFLAGS =
 
+PREFIX =
+TARGET = $(PREFIX)/bin
+
 ifdef DEBUG
     CFLAGS += -Og -g
 else
@@ -23,6 +26,8 @@ all: build
 build: out/!NAME!
 run: out/!NAME!
 	$^
+install: out/!NAME!
+	install -D -m755 $< $(target)/!NAME!
 
 clean:
 	@$(RM) build/*
@@ -46,4 +51,4 @@ build/%.o: src/%.c
 	@mkdir -p $(@D)
 	$(CC) -o $@ $(CFLAGS) $^
 
-.PHONY: clean fclean build run all
+.PHONY: clean fclean build run all install
