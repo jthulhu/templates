@@ -16,29 +16,34 @@ DEPFILES = $(patsubst src/%.c,deps/%.d,$(SOURCES))
 
 ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
     -include $(DEPFILES)
-    -include $(TESTDEPFILES)
 endif
+
+all: build
 
 build: out/!NAME!
 run: out/!NAME!
 	$^
 
 clean:
-	$(RM) build/*
+	@$(RM) build/*
 
 fclean: clean
-	$(RM) out/*
-	$(RM) shared/*
+	@$(RM) out/*
+	@$(RM) shared/*
 
 deps/%.d: src/%.c
+	@mkdir -p $(@D)
 	$(CC) -MT$(patsubst deps/%.d,build/%.o,$@) -MM $^ -o $@
 
 out/%: build/%.o
+	@mkdir -p $(@D)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-out/!NAME!: build/main.o
+out/!NAME!: out/main
+	@cp $< $@
 
-build/%.o: src/%.o
+build/%.o: src/%.c
+	@mkdir -p $(@D)
 	$(CC) -o $@ $(CFLAGS) $^
 
-.PHONT: clean fclean build run
+.PHONY: clean fclean build run all
