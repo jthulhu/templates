@@ -18,14 +18,14 @@
         drv = writeShellApplication {
           inherit name;
           runtimeInputs = dependencies;
-          text = builtins.readFile ./!NAME!.sh;
+          text = builtins.readFile "./!NAME!.sh";
         };
       in rec {
-        packages.!NAME! = drv;
-        defaultPackage = packages.!NAME!;
-        apps.!NAME! = utils.lib.mkApp {
+        packages."!NAME!" = drv;
+        defaultPackage = packages."!NAME!";
+        apps."!NAME!" = utils.lib.mkApp {
           inherit drv;
         };
-        defaultApp = apps.!NAME!;
+        defaultApp = apps."!NAME!";
       });
 }
