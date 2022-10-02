@@ -12,7 +12,7 @@
           # Python packages
         ];
         pythonWithPkgs = pkgs.python3.withPackages pypkgs;
-        !NAME! = pkgs.python3Packages.buildPythonApplication {
+        pkg = pkgs.python3Packages.buildPythonApplication {
           pname = "!NAME!";
           version = "0.1.0";
           src = ./.;
@@ -25,9 +25,9 @@
             python3Packages.ptpython
           ];
         };
-        defaultPackage = !NAME!;
+        defaultPackage = pkg;
         defaultApp = utils.lib.mkApp {
-          drv = !NAME!;
-        }
+          drv = pkg;
+        };
       });
 }
