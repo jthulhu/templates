@@ -7,7 +7,7 @@
         description = "[dev+pkg] Rust template, with Naersk and rust-overlay.";
       };
       rust-lib = {
-        path = /rust-lib;
+        path = ./rust-lib;
         description = "[dev+pkg] Rust template, with Naersk and rust-overlay, for libraries.";
       };
       c = {
