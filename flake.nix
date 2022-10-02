@@ -2,17 +2,17 @@
   description = "My personal templates";
   outputs = { self }: {
     templates = {
-      rust = {
-        path = ./rust;
+      rust-bin = {
+        path = ./rust-bin;
         description = "[dev+pkg] Rust template, with Naersk and rust-overlay.";
       };
-      rust-prologin = {
-        path = ./rust-prologin;
-        description = "[dev] Rust template for prologin problem submission.";
+      rust-lib = {
+        path = /rust-lib;
+        description = "[dev+pkg] Rust template, with Naersk and rust-overlay, for libraries.";
       };
       c = {
         path = ./c;
-        description = "[dev] C template.";
+        description = "[dev+pkg] C template.";
       };
       python = {
         path = ./python;
@@ -20,7 +20,7 @@
       };
       bash = {
         path = ./bash;
-        description = "[dev]Bash template.";
+        description = "[dev] Bash template.";
       };
       ocaml = {
         path = ./ocaml;
