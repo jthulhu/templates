@@ -22,7 +22,7 @@
           version = "0.1.0";
           src = ./.;
           makeFlags = [
-            "PREFIX=${placeholder "out"}"
+            "DESTDIR=${placeholder "out"}"
           ];
         };
         devShell = with pkgs; mkShell {

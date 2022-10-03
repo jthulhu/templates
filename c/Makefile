@@ -2,8 +2,9 @@ CC = gcc
 CFLAGS = -pedantic -Wall -Wextra -c -std=c11
 LDFLAGS =
 
-PREFIX =
-TARGET = $(PREFIX)/bin
+DESTDIR = 
+PREFIX = /usr/local
+BINDIR = $(DESTDIR)$(PREFIX)/bin
 
 ifdef DEBUG
     CFLAGS += -Og -g
@@ -11,7 +12,7 @@ else
     CFLAGS += -O2
 endif
 
-NODEPS = clean fclean
+NODEPS = clean distclean
 SUFFIXES = .d
 
 SOURCES = $(wildcard src/*.c)
@@ -27,14 +28,14 @@ build: out/!NAME!
 run: out/!NAME!
 	$^
 install: out/!NAME!
-	install -D -m755 $< $(TARGET)/!NAME!
+	install -D -m755 $< $(BINDIR)/!NAME!
 
 clean:
 	@$(RM) build/*
 
-fclean: clean
+distclean: clean
 	@$(RM) out/*
-	@$(RM) shared/*
+	@$(RM) deps/*
 
 deps/%.d: src/%.c
 	@mkdir -p $(@D)
@@ -51,4 +52,4 @@ build/%.o: src/%.c
 	@mkdir -p $(@D)
 	$(CC) -o $@ $(CFLAGS) $^
 
-.PHONY: clean fclean build run all install
+.PHONY: clean distclean build run all install
