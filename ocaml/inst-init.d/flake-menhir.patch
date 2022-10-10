@@ -1,0 +1,10 @@
+--- flake.nix	2022-10-10 21:38:15.625012479 +0200
++++ flake.nix	2022-10-10 21:38:27.771663821 +0200
+@@ -16,6 +16,7 @@
+             ocaml
+             dune_3
+           ] ++ (with ocamlPackages; [
++            menhir
+             ocp-indent
+             findlib
+             merlin

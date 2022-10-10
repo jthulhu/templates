@@ -1,0 +1,5 @@
+(executable
+ (name !NAME!)
+ (promote
+  (until-clean)
+  (into "../out/")))

@@ -16,6 +16,7 @@
             ocaml
             dune_3
           ] ++ (with ocamlPackages; [
+            ocp-indent
             findlib
             merlin
             utop

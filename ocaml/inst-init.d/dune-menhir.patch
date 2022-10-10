@@ -1,0 +1,11 @@
+--- dune	2022-10-10 20:26:59.248815722 +0200
++++ dune	2022-10-10 21:48:04.841389360 +0200
+@@ -3,3 +3,8 @@
+  (promote
+   (until-clean)
+   (into "../out/")))
++
++(ocamllex
++ (modules lexer))
++(menhir
++ (modules parser))
