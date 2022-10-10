@@ -1,6 +1,6 @@
 while (($# > 0)); do
     case "$1" in
-	--merlin )
+	--menhir )
 	    patch flake.nix inst-init.d/flake-menhir.patch
 	    patch dune-project  inst-init.d/dune-project-menhir.patch
 	    patch src/dune inst-init.d/dune-menhir.patch
