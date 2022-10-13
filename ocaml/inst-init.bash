@@ -14,5 +14,5 @@ while (($# > 0)); do
 	    exit 1
     esac
 done
-
+mkdir out
 rm -r inst-init.d
