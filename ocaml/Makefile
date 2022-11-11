@@ -1,14 +1,18 @@
 all: !NAME!
 
-out/!NAME.exe:
-	dune build
+out:
+	@mkdir $@
 
-%: out/%.exe
+out/%.exe: src/ | out
+	dune build $(patsubst out/%.exe,src/%.exe,$@)
+
+out/%: out/%.exe
 	cp $< $@
 
 clean:
 	dune clean
-	rm out/*
-	rm !NAME!
+	$(RM) out/*
 
-.PHONY: all clean out/!NAME!.exe
+all: out/!NAME!
+
+.PHONY: all clean
