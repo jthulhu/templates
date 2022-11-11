@@ -1,0 +1,11 @@
+--- !NAME!.tex	2022-10-16 09:53:33.545130706 +0200
++++ !NAME!.tex	2022-11-11 20:57:31.216012477 +0100
+@@ -5,6 +5,8 @@
+ \usepackage{lmodern}
+ \usepackage[!LANG!]{babel}
+ 
++\usepackage{amsmath, amsfonts, amssymb}
++
+ \begin{document}
+ 
+ \end{document}

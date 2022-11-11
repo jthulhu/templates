@@ -26,6 +26,10 @@
         path = ./ocaml;
         description = "[dev] OCaml template.";
       };
+      latex-article = {
+        path = ./latex-article;
+        description = "[dev] Latex article template.";
+      };
     };
   };
 }
