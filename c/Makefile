@@ -31,25 +31,24 @@ install: out/!NAME!
 	install -D -m755 $< $(BINDIR)/!NAME!
 
 clean:
-	@$(RM) build/*
+	@$(RM) out/*
 
 distclean: clean
-	@$(RM) out/*
 	@$(RM) deps/*
 
-deps/%.d: src/%.c
-	@mkdir -p $(@D)
-	$(CC) -MT$(patsubst deps/%.d,build/%.o,$@) -MM $^ -o $@
+deps/%.d: src/%.c | deps
+	$(CC) -MT$(patsubst deps/%.d,out/%.o,$@) -MM $^ -o $@
 
-out/%: build/%.o
-	@mkdir -p $(@D)
+out/%: out/%.o | out
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-out/!NAME!: out/main
+out/!NAME!: out/main | out
 	@cp $< $@
 
-build/%.o: src/%.c
-	@mkdir -p $(@D)
+out/%.o: src/%.c | out
 	$(CC) -o $@ $(CFLAGS) $^
+
+out deps:
+	@mkdir $@
 
 .PHONY: clean distclean build run all install
