@@ -6,7 +6,7 @@ clean:
 	dune clean
 	$(RM) out/*
 
-run: build
+run: out/!NAME!
 	@$<
 out:
 	@mkdir $@
