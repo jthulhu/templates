@@ -15,6 +15,9 @@
         dependencies = with pkgs; [
           # Script dependencies
         ];
+        devDependencies = with pkgs; [
+          shellcheck
+        ];
         drv = writeShellApplication {
           inherit name;
           runtimeInputs = dependencies;
@@ -27,5 +30,8 @@
           inherit drv;
         };
         defaultApp = apps."!NAME!";
+        devShell = pkgs.mkShell {
+          packages = dependencies ++ devDependencies;
+        };
       });
 }
