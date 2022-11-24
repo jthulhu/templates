@@ -1,5 +1,13 @@
-all: !NAME!
+all: build
 
+build: out/!NAME!
+
+clean:
+	dune clean
+	$(RM) out/*
+
+run: build
+	@$<
 out:
 	@mkdir $@
 
@@ -9,10 +17,4 @@ out/%.exe: src/ | out
 out/%: out/%.exe
 	cp $< $@
 
-clean:
-	dune clean
-	$(RM) out/*
-
-all: out/!NAME!
-
-.PHONY: all clean
+.PHONY: all build clean run
