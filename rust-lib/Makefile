@@ -14,7 +14,7 @@ all: build
 build: $(TARGET)
 
 check:
-	@cargo check
+	@cargo clippy
 
 clean:
 	cargo clean
