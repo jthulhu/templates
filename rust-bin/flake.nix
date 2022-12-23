@@ -39,7 +39,7 @@
         };
         devShell = with pkgs; mkShell {
           packages = [
-            rustc
+            rust
             cargo
             cargo-edit
             rustfmt
