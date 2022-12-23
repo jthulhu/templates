@@ -20,7 +20,7 @@
       };
       bash = {
         path = ./bash;
-        description = "[dev] Bash template.";
+        description = "[dev+pkg] Bash template.";
       };
       ocaml = {
         path = ./ocaml;
@@ -29,6 +29,10 @@
       latex-article = {
         path = ./latex-article;
         description = "[dev] Latex article template.";
+      };
+      pharo = {
+        path = ./pharo;
+        description = "[dev] Pharo template.";
       };
     };
   };
