@@ -18,7 +18,7 @@
           ] ++ (with ocamlPackages; [
             ocp-indent
             findlib
-            merlin
+            ocaml-lsp
             utop
           ]);
         };
