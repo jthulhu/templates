@@ -1,4 +1,6 @@
 {
+  description = "!NAME!";
+  
   inputs = {
     nixpkgs.url = github:nixos/nixpkgs/nixpkgs-unstable;
     utils.url = github:numtide/flake-utils;
