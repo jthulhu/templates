@@ -26,6 +26,10 @@
         path = ./ocaml;
         description = "[dev] OCaml template.";
       };
+      coq = {
+        path = ./coq;
+        description = "[dev] Coq template.";
+      };
       latex-article = {
         path = ./latex-article;
         description = "[dev] Latex article template.";
