@@ -30,6 +30,10 @@
         path = ./coq;
         description = "[dev] Coq template.";
       };
+      pgsql = {
+        path = ./pgsql;
+        description = "[dev] PostgreSQL shell.";
+      };
       latex-article = {
         path = ./latex-article;
         description = "[dev] Latex article template.";
