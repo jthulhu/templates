@@ -23,11 +23,14 @@
               echo "unix_socket_directories = '$PGHOST'" >>.data/postgresql.conf
             fi
             alias pg_ctl="pg_ctl -l pgsql.log"
+            pg_ctl start
+            function stop_pgsql() {
+              pg_ctl stop
+            }
+            trap stop_pgsql EXIT
             echo
-            echo -e "         ''${GREEN}Start PostgreSQL:''${END} ''${WHITE}pg_ctl start''${END}"
             echo -e "        ''${GREEN}Create a database:''${END} ''${WHITE}createdb ''${ITALIC}db_name''${END}"
             echo -e "  ''${GREEN}Connect to the database:''${END} ''${WHITE}psql ''${ITALIC}db_name''${END}"
-            echo -e "          ''${GREEN}Stop PostgreSQL:''${END} ''${WHITE}pg_ctl stop''${END}"
           '';
           packages = with pkgs; [
             postgresql
